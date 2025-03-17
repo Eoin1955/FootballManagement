@@ -2,20 +2,28 @@ package ie.atu.Football_Management;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public class DatabaseCentral {
-    private static HikariDataSource dataSource;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseCentral.class);
+    private static final HikariDataSource dataSource;
+    private static final String URL = "jdbc:mysql://localhost:3306/exampledatabase";
+    private static final String USERNAME = "rot";
+    private static final String PASSWORD = "password";
 
     static {
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/football_market"); // Change database name
-        config.setUsername("root"); // Change username
-        config.setPassword("your_password"); // Change password
-        config.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
-        // Connection Pool settings
+        HikariConfig config = new HikariConfig();
+
+        // Connection Pool setting
+        config.setJdbcUrl(URL);
+        config.setUsername(USERNAME);
+        config.setPassword(PASSWORD);
         config.setMaximumPoolSize(10);  // Max connections
         config.setMinimumIdle(2);       // Min idle connections
         config.setIdleTimeout(30000);   // 30s idle timeout
