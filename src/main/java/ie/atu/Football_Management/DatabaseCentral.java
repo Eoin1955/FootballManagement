@@ -1,3 +1,5 @@
+package ie.atu.Football_Management;
+
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
