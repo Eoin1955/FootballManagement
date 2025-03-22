@@ -20,19 +20,24 @@ public class DatabaseCentral {
     private static final String PASSWORD = "password";
 
     static {
+        try{HikariConfig config = new HikariConfig();
 
-        HikariConfig config = new HikariConfig();
+            // Connection Pool setting
+            config.setJdbcUrl(URL);
+            config.setUsername(USERNAME);
+            config.setPassword(PASSWORD);
+            config.setMaximumPoolSize(10);  // Max connections
+            config.setMinimumIdle(2);       // Min idle connections
+            config.setIdleTimeout(30000);   // 30s idle timeout
+            config.setMaxLifetime(1800000); // 30 mins max connection lifetime
 
-        // Connection Pool setting
-        config.setJdbcUrl(URL);
-        config.setUsername(USERNAME);
-        config.setPassword(PASSWORD);
-        config.setMaximumPoolSize(10);  // Max connections
-        config.setMinimumIdle(2);       // Min idle connections
-        config.setIdleTimeout(30000);   // 30s idle timeout
-        config.setMaxLifetime(1800000); // 30 mins max connection lifetime
+            dataSource = new HikariDataSource(config);}
 
-        dataSource = new HikariDataSource(config);
+        catch (Exception e) {
+            LOGGER.error("Error when initialising the database connection", e);
+            throw new ExceptionInInitializerError(e);
+        }
+
     }
 
     public static Connection getConnection() throws SQLException {
