@@ -31,7 +31,8 @@ public class DatabaseCentral {
             config.setIdleTimeout(30000);   // 30s idle timeout
             config.setMaxLifetime(1800000); // 30 mins max connection lifetime
 
-            dataSource = new HikariDataSource(config);}
+            dataSource = new HikariDataSource(config);
+        }
 
         catch (Exception e) {
             LOGGER.error("Error when initialising the database connection", e);
