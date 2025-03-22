@@ -5,17 +5,22 @@ import java.sql.Connection;
 
 public class DatabaseCentralTest {
 
-
         @Test
-           void testConnectionIsValid()
+            void testMultipleConnections()
         {
-            try(Connection connection = DatabaseCentral.getConnection()){
-                assertNotNull(connection, "Connection shouldn't be null");
-                assertFalse(connection.isClosed(), "Connection should be open");
+            try(Connection conn1 = DatabaseCentral.getConnection();
+                Connection conn2 = DatabaseCentral.getConnection())
+            {
+                assertNotNull(conn1);
+                assertNotNull(conn2, "Connection shouldn't be null");
+                assertFalse(conn1.isClosed(), "Connection should be open");
+                assertFalse(conn2.isClosed(), "Connection should be open");
             }
             catch(Exception e){
                 fail("failed to get connection" + e.getMessage());
             }
         }
-    }
+
+
+}
 
