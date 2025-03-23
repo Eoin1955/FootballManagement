@@ -51,10 +51,10 @@ public class playertrackingtest {
         try
         {
             String query = "SELECT * FROM players WHERE player_name LIKE ?";
-            try(PreparedStatement preparedStatement = connection.prepareStatement(query);)
+            try(PreparedStatement preparedStatement = connection.prepareStatement(query))
             {
                 preparedStatement.setInt(1,1);
-                try(ResultSet resultSet = preparedStatement.executeQuery();){
+                try(ResultSet resultSet = preparedStatement.executeQuery()){
 
                         assertTrue(resultSet.next(), "should find player");
 
