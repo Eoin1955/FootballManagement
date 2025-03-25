@@ -11,9 +11,10 @@ import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class playertrackingtest {
+public class Playertrackingtest {
 
     Scanner scanner;
+    Connection connection;
 
     @BeforeEach
     void setUp() {
@@ -21,18 +22,16 @@ public class playertrackingtest {
     }
 
     @Test
-    void ScannertestIsOpen()
+    void ScannerIsOpenTest()
     {
         assertDoesNotThrow(scanner::nextLine, "Scanner should be open and able ot read");
     }
 
     @Test
-    void ScannertestIsClosed(){
+    void ScannerIsClosedTest(){
         scanner.close();
         assertThrows(IllegalStateException.class, scanner::nextLine, "Scanner should be closed");
     }
-
-    Connection connection;
 
     @BeforeEach
     void setUp2() throws SQLException{
