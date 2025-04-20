@@ -2,16 +2,26 @@ package ie.atu.Football_Management;
 
 import java.sql.*;
 
-public class FootballManagement {
+public class Playertracking {
     public static void main(String[] args) {
+
+        String playerName = null;
+        String playerAge = null;
+
         try(Connection connection = DatabaseCentral.getConnection()) {
-            String query = "SELECT * FROM players";
+            String query = "SELECT p.name, p.age" + "FROM player u";
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("first_name") + " " + resultSet.getString("last_name"));
+                playerName = resultSet.getString("name");
+                playerAge = resultSet.getString("age");
             }
+
+            System.out.println(playerName + "Aged: " + playerAge);
+
+
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
