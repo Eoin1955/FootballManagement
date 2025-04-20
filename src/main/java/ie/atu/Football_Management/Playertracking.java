@@ -21,6 +21,7 @@ public class Playertracking {
             System.out.println(playerName + "Aged: " + playerAge);
 
 
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
