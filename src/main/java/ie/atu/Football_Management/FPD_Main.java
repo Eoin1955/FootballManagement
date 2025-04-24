@@ -11,11 +11,7 @@ import java.util.Scanner;
 public class FPD_Main {
     public static void main(String[] args) {
         // Hardcoded credentials
-        String correctUsername = "admin";
-        String correctPassword = "password123";
 
-        String correctTeam = "Al-Nasar";
-        String correctPlayer = "Ronaldo";
 
         Scanner scanner = new Scanner(System.in);
 
@@ -26,12 +22,14 @@ public class FPD_Main {
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
 
+        try (Connection conn = DatabaseCentral.getConnection()) {
+            String sql = "SELECT * FROM users WHERE username = admin AND password = password";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+
         // Check credentials
-        if (username.equals(correctUsername) && password.equals(correctPassword)) {
-            System.out.println("Login successful!");
-        } else {
-            System.out.println("Invalid username or password.");
-        }
+
 
         System.out.println("Enter in a Team name: ");
         String teamName = scanner.nextLine();
