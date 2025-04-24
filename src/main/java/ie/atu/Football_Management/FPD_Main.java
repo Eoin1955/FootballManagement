@@ -24,7 +24,7 @@ public class FPD_Main {
 
         try (Connection connection = DatabaseCentral.getConnection()) {
             String sql = "SELECT * FROM users WHERE username = admin AND password = password";
-            PreparedStatement stmt = conn.prepareStatement(sql);
+            PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, username);
             stmt.setString(2, password);
 
@@ -37,17 +37,18 @@ public class FPD_Main {
                 return;
             }
 
+        } catch (SQLException e) {
+            System.out.println("Database error!");
+            e.printStackTrace();
+        }
+
         System.out.println("Enter in a Team name: ");
         String teamName = scanner.nextLine();
 
         System.out.println("Enter in a player name:  ");
         String playerName = scanner.nextLine();
 
-        if (teamName.equals(correctTeam) && playerName.equals(correctPlayer)) {
-            System.out.println("Team and player names match.!");
-        }else{
-            System.out.println("Invalid team or player name.");
-        }
+
 
         System.out.println("Choose the following Options: ");
         System.out.println("1. Performance");
