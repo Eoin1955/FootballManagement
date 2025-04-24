@@ -1,6 +1,12 @@
 package ie.atu.Football_Management;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
+
+
 
 public class FPD_Main {
     public static void main(String[] args) {
