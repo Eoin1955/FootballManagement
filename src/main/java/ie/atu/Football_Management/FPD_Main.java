@@ -100,6 +100,24 @@ public class FPD_Main {
                         System.out.println("Performance data saved.");
                     }
                     break;
+                case 2:
+                    System.out.println("Enter disciplinary note:");
+                    String disciplinary = scanner.nextLine();
+
+                    String insertDisciplinary = "UPDATE player_stats SET disciplinary = ? WHERE team_name = ? AND player_name = ?";
+                    try (PreparedStatement ps = connection.prepareStatement(insertDisciplinary)) {
+                        ps.setString(1, disciplinary);
+                        ps.setString(2, teamName);
+                        ps.setString(3, playerName);
+                        int updated = ps.executeUpdate();
+                        if (updated > 0) {
+                            System.out.println("Disciplinary record updated.");
+                        } else {
+                            System.out.println("Player not found. Please add performance first.");
+                        }
+                    }
+                    break;
+
 
         }
         scanner.close();
