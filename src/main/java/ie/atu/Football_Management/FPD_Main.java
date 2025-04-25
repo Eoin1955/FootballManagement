@@ -84,23 +84,10 @@ public class FPD_Main {
         System.out.println("4. Player Rating");
         int option = scanner.nextInt();
 
-        if (option == 1) {
-            System.out.println("Entering option One");
-            System.out.println("Connecting.......");
-        } else if (option == 2) {
-            System.out.println("Entering option Two");
-            System.out.println("Connecting.......");
-        } else if (option == 3) {
-            System.out.println("Entering option Three");
-            System.out.println("Connecting.......");
-        } else if (option == 4) {
-            System.out.println("Entering option Four");
-            System.out.println("Connecting.......");
-        }else{
-            System.out.println("Invalid option.");
+
+        try (Connection connection = DatabaseCentral.getConnection()) {
+
         }
-
-
         scanner.close();
     }
 }
