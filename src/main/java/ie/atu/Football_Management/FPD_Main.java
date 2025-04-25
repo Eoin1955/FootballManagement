@@ -68,6 +68,10 @@ public class FPD_Main {
                 System.out.println("Name: " + fetchedPlayer);
 
 
+            } else {
+                System.out.println("Player not found.");
+            }
+
 
 
             System.out.println("Choose the following Options: ");
