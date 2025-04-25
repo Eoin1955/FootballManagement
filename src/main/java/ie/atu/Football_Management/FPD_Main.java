@@ -62,7 +62,10 @@ public class FPD_Main {
                 String fetchedPlayer = rs.getString("player_name");
 
 
-
+                System.out.println("Player Found:");
+                System.out.println("ID: " + playerId);
+                System.out.println("Team: " + fetchedTeam);
+                System.out.println("Name: " + fetchedPlayer);
 
 
 
