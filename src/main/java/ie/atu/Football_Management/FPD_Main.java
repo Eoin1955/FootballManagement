@@ -52,6 +52,9 @@ public class FPD_Main {
         try (Connection connection = DatabaseCentral.getConnection();
              PreparedStatement selectStmt = connection.prepareStatement(selectSQL)) {
 
+            selectStmt.setString(1, teamName);
+            selectStmt.setString(2, playerName);
+            ResultSet rs = selectStmt.executeQuery();
 
 
 
@@ -59,7 +62,7 @@ public class FPD_Main {
 
 
 
-        System.out.println("Choose the following Options: ");
+            System.out.println("Choose the following Options: ");
         System.out.println("1. Performance");
         System.out.println("2. Disaplinary");
         System.out.println("3. PlayerID");
