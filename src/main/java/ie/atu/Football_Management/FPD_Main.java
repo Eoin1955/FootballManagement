@@ -117,7 +117,18 @@ public class FPD_Main {
                         }
                     }
                     break;
-
+                case 3:
+                    String getPlayerId = "SELECT id FROM player_stats WHERE team_name = ? AND player_name = ?";
+                    try (PreparedStatement ps = connection.prepareStatement(getPlayerId)) {
+                        ps.setString(1, teamName);
+                        ps.setString(2, playerName);
+                        ResultSet rs = ps.executeQuery();
+                        if (rs.next()) {
+                            System.out.println("Player ID: " + rs.getInt("id"));
+                        } else {
+                            System.out.println("Player not found.");
+                        }
+                    }
 
         }
         scanner.close();
