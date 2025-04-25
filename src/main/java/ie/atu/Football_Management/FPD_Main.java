@@ -86,6 +86,20 @@ public class FPD_Main {
 
 
         try (Connection connection = DatabaseCentral.getConnection()) {
+            switch (option) {
+                case 1:
+                    System.out.println("Enter performance note:");
+                    String performance = scanner.nextLine();
+
+                    String insertPerformance = "INSERT INTO player_stats (team_name, player_name, performance) VALUES (?, ?, ?)";
+                    try (PreparedStatement ps = connection.prepareStatement(insertPerformance)) {
+                        ps.setString(1, teamName);
+                        ps.setString(2, playerName);
+                        ps.setString(3, performance);
+                        ps.executeUpdate();
+                        System.out.println("Performance data saved.");
+                    }
+                    break;
 
         }
         scanner.close();
