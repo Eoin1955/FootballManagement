@@ -145,8 +145,14 @@ public class FPD_Main {
                         System.out.println("Rating added to performance notes.");
                     }
                     break;
+                default:
+                    System.out.println("Invalid option.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Database error!");
+            e.printStackTrace();
+        }
 
         }
         scanner.close();
     }
-}
