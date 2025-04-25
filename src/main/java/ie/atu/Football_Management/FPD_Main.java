@@ -129,6 +129,22 @@ public class FPD_Main {
                             System.out.println("Player not found.");
                         }
                     }
+                    break;
+
+                case 4:
+                    System.out.println("Enter player rating (1–10):");
+                    int rating = scanner.nextInt();
+                    scanner.nextLine(); // consume newline
+
+                    String updateRating = "UPDATE player_stats SET performance = CONCAT(performance, '\nRating: ', ?) WHERE team_name = ? AND player_name = ?";
+                    try (PreparedStatement ps = connection.prepareStatement(updateRating)) {
+                        ps.setInt(1, rating);
+                        ps.setString(2, teamName);
+                        ps.setString(3, playerName);
+                        ps.executeUpdate();
+                        System.out.println("Rating added to performance notes.");
+                    }
+                    break;
 
         }
         scanner.close();
