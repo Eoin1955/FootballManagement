@@ -56,6 +56,11 @@ public class FPD_Main {
             selectStmt.setString(2, playerName);
             ResultSet rs = selectStmt.executeQuery();
 
+            if (rs.next()) {
+                int playerId = rs.getInt("id");
+                String fetchedTeam = rs.getString("team_name");
+                String fetchedPlayer = rs.getString("player_name");
+
 
 
 
