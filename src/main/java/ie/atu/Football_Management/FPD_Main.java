@@ -23,7 +23,7 @@ public class FPD_Main {
         String password = scanner.nextLine();
 
         try (Connection connection = DatabaseCentral.getConnection()) {
-            String sql = "SELECT * FROM users WHERE username = admin AND password = password";
+            String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, username);
             stmt.setString(2, password);
@@ -47,6 +47,15 @@ public class FPD_Main {
 
         System.out.println("Enter in a player name:  ");
         String playerName = scanner.nextLine();
+
+        String selectSQL = "SELECT * FROM players WHERE team_name = ? AND player_name = ?";
+        try (Connection connection = DatabaseCentral.getConnection();
+             PreparedStatement selectStmt = connection.prepareStatement(selectSQL)) {
+
+
+
+
+
 
 
 
