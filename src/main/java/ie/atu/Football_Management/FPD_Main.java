@@ -71,7 +71,10 @@ public class FPD_Main {
             } else {
                 System.out.println("Player not found.");
             }
-
+        } catch (SQLException e) {
+            System.out.println("Database error during retrieval.");
+            e.printStackTrace();
+        }
 
 
             System.out.println("Choose the following Options: ");
