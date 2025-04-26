@@ -42,7 +42,7 @@ public class FPD_Main {
         System.out.println("Choose the following Options: ");
         System.out.println("1. Performance");
         System.out.println("2. Disaplinary");
-        System.out.println("3. Player");
+        System.out.println("3. PlayerID");
         System.out.println("4. Player Rating");
         int option = scanner.nextInt();
 
@@ -55,7 +55,6 @@ public class FPD_Main {
         } else if (option == 3) {
             System.out.println("Entering option Three");
             System.out.println("Connecting.......");
-
         } else if (option == 4) {
             System.out.println("Entering option Four");
             System.out.println("Connecting.......");
