@@ -55,8 +55,7 @@ public class FPD_Main {
         } else if (option == 3) {
             System.out.println("Entering option Three");
             System.out.println("Connecting.......");
-            playerTracking playerTracking = new playerTracking();
-            playerTracking.playertracking();
+
         } else if (option == 4) {
             System.out.println("Entering option Four");
             System.out.println("Connecting.......");
