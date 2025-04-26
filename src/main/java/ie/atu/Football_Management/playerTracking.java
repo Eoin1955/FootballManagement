@@ -3,7 +3,7 @@ package ie.atu.Football_Management;
 import java.sql.*;
 import java.util.Scanner;
 
-public class playerTracking {
+public class Playertracking {
     public void playertracking(){
         try(Connection connection = DatabaseCentral.getConnection()){
             //I want to find a player
@@ -33,5 +33,3 @@ public class playerTracking {
         }
     }
 }
-
-
