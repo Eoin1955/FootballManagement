@@ -28,7 +28,7 @@ public class FPD_Main {
             stmt.setString(1, username);
             stmt.setString(2, password);
 
-        // Check credentials
+            // Check credentials
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 System.out.println("Login successful!");
@@ -77,7 +77,7 @@ public class FPD_Main {
         }
 
 
-            System.out.println("Choose the following Options: ");
+        System.out.println("Choose the following Options: ");
         System.out.println("1. Performance");
         System.out.println("2. Disaplinary");
         System.out.println("3. PlayerID");
@@ -153,6 +153,8 @@ public class FPD_Main {
             e.printStackTrace();
         }
 
-        }
+
         scanner.close();
     }
+}
+
