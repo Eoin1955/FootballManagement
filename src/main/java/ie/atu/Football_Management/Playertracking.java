@@ -1,33 +1,35 @@
 package ie.atu.Football_Management;
 
 import java.sql.*;
+import java.util.Scanner;
 
 public class Playertracking {
-    public static void main(String[] args) {
+    public void playertracking(){
+        try(Connection connection = DatabaseCentral.getConnection()){
+            //I want to find a player
+            //I want to look at the stats for that player and their team
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter player name: ");
+            String PlayerName = scanner.nextLine();
 
-        String playerName = null;
-        String playerAge = null;
+            String selectsql = "SELECT * FROM playerstats WHERE playerID=?";
+            PreparedStatement statement = connection.prepareStatement(selectsql);
+            statement.setString(1, PlayerName);
 
-        try(Connection connection = DatabaseCentral.getConnection()) {
-            String query = "SELECT p.name, p.age" + "FROM player u";
-            PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                playerName = resultSet.getString("name");
-                playerAge = resultSet.getString("age");
+            if(resultSet.next()){
+                System.out.println("Player name is " + resultSet.getString("playerName"));
+                System.out.println("Team: " + resultSet.getString("team"));
+                System.out.println("Goals: " + resultSet.getInt("goals"));
+                System.out.println("Assists: " + resultSet.getInt("assists"));
+                System.out.println("Appearances: " + resultSet.getInt("appearances"));
             }
-
-            System.out.println(playerName + "Aged: " + playerAge);
-
-
+            else{
+                System.out.println("Player not found");
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        finally {
-            DatabaseCentral.close();
-        }
     }
 }
-
