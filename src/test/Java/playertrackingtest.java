@@ -47,28 +47,41 @@ public class playertrackingtest {
     }
 
     @Test
-    void RetrievalTest(){
-        try
-        {
-            String query = "SELECT * FROM players WHERE player_name LIKE ?";
-            try(PreparedStatement preparedStatement = connection.prepareStatement(query))
-            {
-                preparedStatement.setInt(1,1);
-                try(ResultSet resultSet = preparedStatement.executeQuery()){
+    void RetrievalTest() {
+        try {
+            // 1. Use a known existing player name for testing
+            String testPlayerName = "Ben White"; // Replace with a name that exists in your DB
 
-                        assertTrue(resultSet.next(), "should find player");
+            String query = "SELECT player_name, market_value FROM players WHERE player_name = ?";
 
-                        String playerName = resultSet.getString("name");
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                // 2. Set the parameter as String, not Int
+                preparedStatement.setString(1, testPlayerName);
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    // 3. First verify a player was found
+                    assertTrue(resultSet.next(), "Should find player with name: " + testPlayerName);
+
+                    // 4. Get values
+                    String playerName = resultSet.getString("player_name");
+
+                    // 5. Handle market_value appropriately (might be string or int)
+                    try {
+                        // Try reading as int first
                         int marketValue = resultSet.getInt("market_value");
-
-                        assertNotNull(playerName, "Player name should not be null");
                         assertTrue(marketValue > 0, "Market value should be greater than zero");
+                    } catch (SQLException e) {
+                        // If not int, try as string
+                        String marketValueStr = resultSet.getString("market_value");
+                        assertNotNull(marketValueStr, "Market value should not be null");
+                        assertFalse(marketValueStr.isEmpty(), "Market value should not be empty");
+                    }
+
+                    assertNotNull(playerName, "Player name should not be null");
                 }
             }
-        }
-        catch (Exception e)
-        {
-            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            fail("Database error occurred: " + e.getMessage());
         }
     }
 }
