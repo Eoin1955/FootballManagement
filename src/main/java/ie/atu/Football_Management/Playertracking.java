@@ -4,10 +4,6 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class Playertracking {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/FPD?useSSL=false";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "Password";
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -25,7 +21,7 @@ public class Playertracking {
             // Load MySQL JDBC Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+            try (Connection connection = DatabaseCentral.getConnection()) {
 
                 // 1. First query to get basic player info
                 String playerQuery = "SELECT player_id, player_name, nationality, position, age, market_value " +
